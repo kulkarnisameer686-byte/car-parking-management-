@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header-title">
+                <span class="icon">🅿️</span>
+                Car Parking Management System
+            </h1>
+            <div class="header-stats">
+                <div class="stat-card">
+                    <span class="stat-label">Total Slots</span>
+                    <span class="stat-value" id="totalSlots">20</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Available</span>
+                    <span class="stat-value available" id="availableSlots">20</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Occupied</span>
+                    <span class="stat-value occupied" id="occupiedSlots">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="parking-section">
+                <h2 class="section-title">Parking Grid</h2>
+                <div class="parking-grid" id="parkingGrid">
+                    <!-- Parking slots will be generated dynamically -->
+                </div>
+            </section>
+
+            <section class="form-section">
+                <div class="form-card">
+                    <h2 class="form-title">Vehicle Entry Form</h2>
+                    <form id="vehicleForm" class="vehicle-form">
+                        <div class="form-group">
+                            <label for="slotNumber" class="form-label">Selected Slot</label>
+                            <input type="text" id="slotNumber" class="form-input" readonly placeholder="Select a slot from the grid">
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicleNumber" class="form-label">Vehicle Number <span class="required">*</span></label>
+                            <input type="text" id="vehicleNumber" class="form-input" placeholder="e.g., ABC-1234" required>
+                            <span class="error-message" id="vehicleNumberError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerName" class="form-label">Owner Name <span class="required">*</span></label>
+                            <input type="text" id="ownerName" class="form-input" placeholder="Enter owner name" required>
+                            <span class="error-message" id="ownerNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicleType" class="form-label">Vehicle Type <span class="required">*</span></label>
+                            <select id="vehicleType" class="form-input" required>
+                                <option value="">Select vehicle type</option>
+                                <option value="Car">Car</option>
+                                <option value="Bike">Bike</option>
+                            </select>
+                            <span class="error-message" id="vehicleTypeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="entryTime" class="form-label">Entry Time</label>
+                            <input type="datetime-local" id="entryTime" class="form-input" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="bookBtn">Book Slot</button>
+                            <button type="button" class="btn btn-secondary" id="clearBtn">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Parking Ticket Modal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Parking Ticket</h2>
+                <button class="modal-close" id="closeTicketModal">&times;</button>
+            </div>
+            <div class="modal-body" id="ticketContent">
+                <!-- Ticket content will be generated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="printTicket">Print Ticket</button>
+                <button class="btn btn-secondary" id="closeTicketBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slot Details Modal -->
+    <div class="modal" id="slotDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Slot Details</h2>
+                <button class="modal-close" id="closeSlotModal">&times;</button>
+            </div>
+            <div class="modal-body" id="slotDetailsContent">
+                <!-- Slot details will be generated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="exitVehicleBtn">Exit Vehicle</button>
+                <button class="btn btn-secondary" id="closeSlotBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
